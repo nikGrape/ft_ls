@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 13:00:35 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/11 21:42:38 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/11 21:55:23 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 #include "ft_ls.h"
 
-int main(void)
+int main(int argc, char **argv)
 {
 	struct stat		ap;
 	struct dirent	*dir;
