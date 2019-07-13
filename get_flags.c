@@ -1,0 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_flags.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/12 11:11:14 by Nik               #+#    #+#             */
+/*   Updated: 2019/07/12 21:04:50 by Nik              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* following: -l(list), -R(attachments), -a(hiden), -r and -t. */
+#include "ft_ls.h"
+
+static int	is_flag(char ch)
+{
+	if (ch == 'l' || ch == 'R' || ch == 'a'\
+	|| ch == 'r' || ch == 't' || ch == 'G')
+		return (1);
+	return (0);
+}
+
+t_ls_flags	get_flags(char *s)
+{
+	t_ls_flags flags;
+	
+	ft_bzero(&flags, sizeof(t_ls_flags));
+	if(*s == '-')
+	{
+		s++;
+		while (is_flag(*s))
+		{
+			if (*s == 'l')
+				flags.list = 1;
+			if (*s == 'R')
+				flags.attach = 1;
+			if (*s == 'a')
+				flags.hidden = 1;
+			if (*s == 'r')
+				flags.revers = 1;
+			if (*s == 't')
+				flags.time_order = 1;
+			if (*s == 'G')
+				flags.colors = 1;
+			s++;
+		}
+		if (*s != '\0')
+			ls_errors(3, s);
+	}
+	else
+		flags.no_flags = 1;	
+	return (flags);
+}

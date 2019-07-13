@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 18:26:04 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/09 18:42:45 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/12 10:06:30 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,5 +156,6 @@ char			*redactor(char *arg, t_flag flags, register char spcf);
 char			*str_redactor(char *arg, register t_flag flags);
 int				color_redactor(const char *str);
 int				putstr_for_null_char(char *s);
+int				putstr_color(char *s);
 
 #endif

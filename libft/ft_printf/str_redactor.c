@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_redactor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 20:09:48 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/09 18:51:38 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/12 10:10:38 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,25 @@ int		putstr_for_null_char(char *s)
 		{
 			if (s[i] == '@')
 				ft_putchar('^');
+			ft_putchar(s[i++]);
+		}
+	return (i);
+}
+
+int		putstr_color(char *s)
+{
+	size_t i;
+
+	i = 0;
+	if (s != NULL)
+		while (s[i] != '\0')
+		{
+			if (s[i] == '{')
+			{
+				i += color_redactor(&s[i]);
+				if (!s[i])
+					break ;
+			}
 			ft_putchar(s[i++]);
 		}
 	return (i);

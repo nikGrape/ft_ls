@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 11:15:24 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/09 18:47:02 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/12 10:06:52 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_printf(const char *format, ...)
 		if (!(s = specifier(&flags, &ap)))
 			continue ;
 		format += flags.steps;
-		total += (flags.spcf != 'N') ? ft_putstr(s) : putstr_for_null_char(s);
+		total += (flags.spcf != 'N') ? putstr_color(s) : putstr_for_null_char(s);
 		ft_strdel(&s);
 	}
 	va_end(ap);

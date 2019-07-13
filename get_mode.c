@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mode_redactor.c                                    :+:      :+:    :+:   */
+/*   get_mode.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 21:10:47 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/11 21:43:36 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/12 18:22:54 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #define O_W		2
 #define O_X		1
 
-char	*mode_redactor(unsigned int mode)
+char	*get_mode(unsigned int mode)
 {
 	char *str_mode;
 
