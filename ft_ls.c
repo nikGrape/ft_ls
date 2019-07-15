@@ -6,7 +6,7 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 13:00:35 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/12 19:22:59 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/14 12:37:47 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,20 @@ void	ft_ls(char *dir_name, t_ls_flags *flags)
 	dir_fd = opendir(dir_name);
 	list = get_list(flags, dir_fd);
 	print_list(list, flags);
-	//closedir(dir_fd);
+	closedir(dir_fd);
+	if (flags->attach)
+	{
+		while (list->next)
+		{
+			if ((list->mode[0] == 'd') && !(flags->hidden &&\
+			(!ft_strcmp(list->name, ".") || !ft_strcmp(list->name, ".."))))
+			{
+				ft_printf("%s/%s:\n", dir_name, list->name);
+				ft_ls(ft_strjoin(ft_strjoin(dir_name, "/"), list->name), flags);
+			}
+			list = list->next;
+		}
+	}
 }
 
 int		main(int argc, char **argv)

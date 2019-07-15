@@ -6,7 +6,7 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 11:10:05 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/13 13:18:50 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/14 12:57:58 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_file_list			*get_list(t_ls_flags *flags, DIR *dir_fd)
 	t_file_list	*head;
 	t_file_list	*list;
 	int i = 1;
+	//info = (struct stat *)malloc(sizeof(struct stat));
 	head = new_file_list(NULL);
 	list = head;
 	while ((dir = readdir(dir_fd)))
@@ -76,10 +77,9 @@ t_file_list			*get_list(t_ls_flags *flags, DIR *dir_fd)
 		list->next = new_file_list(list);//???
 		stat(dir->d_name, &info);
 		list->created = info.st_mtimespec.tv_sec;
-		ft_printf("%ld\n", info.st_mtimespec.tv_sec);
-		list->time = ctime(&(info.st_mtimespec.tv_sec));
+		list->time = ft_strdup(ctime(&(info.st_mtimespec.tv_sec)));
 		list->mode = get_mode(info.st_mode);
-		list->name = add_color(dir->d_name, list->mode, flags->colors);
+		list->name = ft_strdup(dir->d_name);
 		list->usr = getpwuid(info.st_uid)->pw_name;
 		list->group = getgrgid(info.st_gid)->gr_name;
 		list->links = info.st_nlink;
