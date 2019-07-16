@@ -3,30 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   time_sort_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 21:17:07 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/13 14:49:02 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/16 00:07:10 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	next_swap(t_file_list *one, t_file_list *two)
+void			next_swap(t_file_list *one, t_file_list *two)
 {
 	t_file_list *tmp;
-	
+
 	tmp = one->next;
 	one->next = two->next;
 	two->next = tmp;
 }
 
-void	list_swap(t_file_list *one, t_file_list *two)
+void			list_swap(t_file_list *one, t_file_list *two)
 {
 	next_swap(one->back, two->back);
 	next_swap(one, two);
 }
-
 
 t_file_list		*time_sort_list(t_file_list *head)
 {
