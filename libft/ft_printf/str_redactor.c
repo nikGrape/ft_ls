@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   str_redactor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 20:09:48 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/12 10:10:38 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/15 11:31:21 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "ft_printf.h"
 
 char	*str_redactor(char *arg, register t_flag flags)
 {

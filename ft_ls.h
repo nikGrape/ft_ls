@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 21:12:45 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/14 12:37:59 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/15 15:53:03 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct	s_ls
 
 char			*get_mode(unsigned int mode);
 void			ls_errors(int err, char *file_name);
-t_file_list		*get_list(t_ls_flags *flags, DIR *dir_fd);
+t_file_list		*get_list(t_ls_flags *flags, DIR *dir_fd, char *dir_name);
 t_ls_flags		get_flags(char *s);
 void			print_list(t_file_list *list, t_ls_flags *flags);
 void			ft_ls(char *dir_name, t_ls_flags *flags);

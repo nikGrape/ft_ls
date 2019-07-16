@@ -6,11 +6,11 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:19:09 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/09 18:51:22 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/15 11:30:18 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "ft_printf.h"
 #define BLACK		"\033[0;30m"
 #define BOLD_GRAY	"\033[1;30m"
 #define RED			"\033[0;31m"

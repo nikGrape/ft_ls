@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 13:00:35 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/14 12:37:47 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/15 18:02:38 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
+dirent - ????
 ** opendir+		readdir+	closedir+	stat+
 ** readlink		lstat - (for links)
 ** getpwuid+ getgrgid+ - (user and grup information in struct passwd)
@@ -29,7 +30,7 @@ void	ft_ls(char *dir_name, t_ls_flags *flags)
 	t_file_list	*list;
 
 	dir_fd = opendir(dir_name);
-	list = get_list(flags, dir_fd);
+	list = get_list(flags, dir_fd, dir_name);
 	print_list(list, flags);
 	closedir(dir_fd);
 	if (flags->attach)

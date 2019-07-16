@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 11:10:05 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/14 12:57:58 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/15 17:56:03 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,28 +60,27 @@ static char			*add_color(char *name, const char *mode, char g_flag)
 	return (file_name);
 }
 
-t_file_list			*get_list(t_ls_flags *flags, DIR *dir_fd)
+t_file_list			*get_list(t_ls_flags *flags, DIR *dir_fd, char *dir_name)
 {
-	Stat		info;		//file information container
-	Dirent		*dir;		//name and ino container
+	struct stat	info;		//file information container
+	Dirent		*file;		//name and ino container
 	t_file_list	*head;
 	t_file_list	*list;
 	int i = 1;
-	//info = (struct stat *)malloc(sizeof(struct stat));
 	head = new_file_list(NULL);
 	list = head;
-	while ((dir = readdir(dir_fd)))
+	while ((file = readdir(dir_fd)))
 	{
-		if (dir->d_name[0] == '.' && !flags->hidden)
+		if (file->d_name[0] == '.' && !flags->hidden)
 			continue ;
 		list->next = new_file_list(list);//???
-		stat(dir->d_name, &info);
+		stat(ft_strjoin(ft_strjoin(dir_name, "/"), file->d_name), &info);
 		list->created = info.st_mtimespec.tv_sec;
 		list->time = ft_strdup(ctime(&(info.st_mtimespec.tv_sec)));
 		list->mode = get_mode(info.st_mode);
-		list->name = ft_strdup(dir->d_name);
-		list->usr = getpwuid(info.st_uid)->pw_name;
-		list->group = getgrgid(info.st_gid)->gr_name;
+		list->name = ft_strdup(file->d_name);
+		list->usr = ft_strdup(getpwuid(info.st_uid)->pw_name);
+		list->group = ft_strdup(getgrgid(info.st_gid)->gr_name);
 		list->links = info.st_nlink;
 		list->size = info.st_size;
 		list = list->next;

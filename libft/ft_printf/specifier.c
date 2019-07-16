@@ -6,11 +6,11 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 00:55:21 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/09 18:51:17 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/15 11:31:40 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "ft_printf.h"
 
 static char	*hendler_s_c(t_flag *flags, va_list *ap)
 {
