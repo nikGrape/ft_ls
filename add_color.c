@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_errors.c                                        :+:      :+:    :+:   */
+/*   add_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/12 11:22:34 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/16 15:22:50 by vinograd         ###   ########.fr       */
+/*   Created: 2019/07/16 14:29:05 by vinograd          #+#    #+#             */
+/*   Updated: 2019/07/16 14:30:57 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ls_errors(int err, char *message)
+char			*add_color(char *name, const char *mode)
 {
-	if (err == 1)
-		ft_printf("ft_ls: %s: No such file or directory\n", message);
-	else if (err == 3)
-		ft_printf("ls: illegal option - %c\n\
-		usge: ft_ls [-GRlart] [file ...]\n", *message);
-	exit(1);
+	char *file_name;
+
+	file_name = ft_strdup(name);
+	if (mode[0] == 'd')
+		file_name = ft_strjoin_free(ft_strjoin_free("{bold_cyan}",\
+		file_name, 2), "{eoc}", 1);
+	else if (mode[3] == 'x')
+		file_name = ft_strjoin_free(ft_strjoin_free("{red}",\
+		file_name, 2), "{eoc}", 1);
+	return (file_name);
 }

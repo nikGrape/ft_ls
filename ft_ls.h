@@ -6,14 +6,17 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 21:12:45 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/15 15:53:03 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/16 17:37:15 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* following: -l(list), -R(attachments), -a(hiden), -r(reverse order) and -t(create time). */
+/*
+** following: -l(list), -R(attachments), -a(hiden)
+** -r(reverse order) and -t(create time order)
+*/
 
-#ifndef FT_LS
-# define FT_LS
+#ifndef FT_LS_H
+# define FT_LS_H
 
 # include "stdio.h"
 # include "libft/libft.h"
@@ -29,21 +32,19 @@ typedef struct dirent	Dirent;
 typedef struct stat		Stat;
 typedef struct
 {
-	char	list;
-	char	attach;
-	char	hidden;
-	char	revers;
-	char	time_order;
-	char	colors;
-	char	one;
-	char	no_flags;
+	char		l_flag;
+	char		attach;
+	char		hidden;
+	char		revers_order;
+	char		time_order;
+	char		colors;
+	char		no_flags;
 }				t_ls_flags;
 typedef struct	s_ls
 {
-	long		created;
-	char		*name;	//free
-	char		*time;	//free
-	char		*mode;	//free
+	long		time;
+	char		*name;	//need free!
+	char		*mode;	//need free!
 	size_t		size;
 	char		*group;
 	char		*usr;
@@ -52,13 +53,14 @@ typedef struct	s_ls
 	struct s_ls *back;
 }				t_file_list;
 
-
+void			ft_ls(char *dir_name, t_ls_flags *flags);
+t_ls_flags		get_flags(char *s);
+t_file_list		*get_list(t_ls_flags *flags, DIR *dir_fd, char *path);
 char			*get_mode(unsigned int mode);
 void			ls_errors(int err, char *file_name);
-t_file_list		*get_list(t_ls_flags *flags, DIR *dir_fd, char *dir_name);
-t_ls_flags		get_flags(char *s);
 void			print_list(t_file_list *list, t_ls_flags *flags);
-void			ft_ls(char *dir_name, t_ls_flags *flags);
-t_file_list		*time_sort_list(t_file_list *list);
+t_file_list		*time_sort(t_file_list *head);
+t_file_list		*alphabet_sort(t_file_list *head);
+char			*add_color(char *name, const char *mode);
 
 #endif
