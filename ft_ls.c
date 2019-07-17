@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 13:00:35 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/16 20:55:09 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/16 23:34:01 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** listxattr getxattr
 ** time		ctime+
 ** perror strerror exit - (errors_functions)
-** malloc free write - (used in libft)
+**
 ** following: -l(list), -R(attachments), -a(hiden)
 ** -r(reverse order) and -t(time order).
 */
@@ -27,27 +27,18 @@
 
 void	ft_ls(char *dir_name, t_ls_flags *flags)
 {
+	t_file_list *list;
 	DIR			*dir_fd;
-	t_file_list	*list;
+	char		*path;
+	void		**arr;
 
 	dir_fd = opendir(dir_name);
-	list = get_list(flags, dir_fd, dir_name);
-	list = (flags->time_order) ? time_sort(list) : alphabet_sort(list);
-	//print_list(list, flags);
+	arr = get_dir(flags, dir_fd, dir_name);
+	print(arr, flags);
 	closedir(dir_fd);
 	if (flags->attach)
-	{
-		while (list->next)
-		{
-			if ((list->mode[0] == 'd') && !(flags->hidden &&\
-			(!ft_strcmp(list->name, ".") || !ft_strcmp(list->name, ".."))))
-			{
-				ft_printf("%s/%s:\n", dir_name, list->name);
-				ft_ls(ft_strjoin(ft_strjoin(dir_name, "/"), list->name), flags);
-			}
-			list = list->next;
-		}
-	}
+		attach_hendler(arr, flags, dir_name);
+	//dir_del(arr);
 }
 
 int		main(int argc, char **argv)

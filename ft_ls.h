@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 21:12:45 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/16 17:37:15 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/16 23:31:13 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,13 @@ typedef struct	s_ls
 
 void			ft_ls(char *dir_name, t_ls_flags *flags);
 t_ls_flags		get_flags(char *s);
-t_file_list		*get_list(t_ls_flags *flags, DIR *dir_fd, char *path);
+void			**get_dir(t_ls_flags *flags, DIR *dir_fd, char *path);
 char			*get_mode(unsigned int mode);
 void			ls_errors(int err, char *file_name);
-void			print_list(t_file_list *list, t_ls_flags *flags);
-t_file_list		*time_sort(t_file_list *head);
-t_file_list		*alphabet_sort(t_file_list *head);
+void			print(void **arr, t_ls_flags *flags);
+void			sort(void **arr, t_ls_flags *flags);
 char			*add_color(char *name, const char *mode);
+void			attach_hendler(void **arr, t_ls_flags *flags, char *dir_name);
+void			dir_del(void **arr);
 
 #endif

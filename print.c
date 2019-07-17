@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_list.c                                       :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/12 16:09:28 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/16 17:40:03 by vinograd         ###   ########.fr       */
+/*   Created: 2019/07/16 21:07:50 by vinograd          #+#    #+#             */
+/*   Updated: 2019/07/16 23:26:10 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void	frw_print_list(t_file_list *list, t_ls_flags *flags)
+static void	print_frwrd(void **arr, t_ls_flags *flags)
 {
-	char *name;
+	t_file_list *list;
+	char		*name;
 
-	while (list->next != NULL)
+	while (*arr != NULL)
 	{
+		list = (t_file_list *)*arr;
 		name = (flags->colors) ? add_color(list->name, list->mode) : list->name;
 		if (flags->l_flag)
 			ft_printf("%s%4d %s  %s%7ld %.12s %s\n",\
@@ -25,7 +27,7 @@ static void	frw_print_list(t_file_list *list, t_ls_flags *flags)
 			list->size, ctime(&list->time) + 4, name);
 		else
 			ft_printf("%s\t", name);
-		list = list->next;
+		arr++;
 		if (flags->colors)
 			ft_strdel(&name);
 	}
@@ -33,14 +35,18 @@ static void	frw_print_list(t_file_list *list, t_ls_flags *flags)
 		ft_putchar('\n');
 }
 
-static void	rev_print_list(t_file_list *list, t_ls_flags *flags)
+static void	print_revers(void **arr, t_ls_flags *flags)
 {
-	char *name;
+	t_file_list *list;
+	char		*name;
+	int			len;
 
-	while (list->next->next)
-		list = list->next;
-	while (list)
+	len = 0;
+	while (arr[len])
+		len++;
+	while (--len >= 0)
 	{
+		list = (t_file_list *)arr[len];
 		name = (flags->colors) ? add_color(list->name, list->mode) : list->name;
 		if (flags->l_flag)
 			ft_printf("%s%4d %s  %s%7ld %.12s %s\n",\
@@ -48,7 +54,6 @@ static void	rev_print_list(t_file_list *list, t_ls_flags *flags)
 			list->size, ctime(&list->time) + 4, name);
 		else
 			ft_printf("%s\t", name);
-		list = list->back;
 		if (flags->colors)
 			ft_strdel(&name);
 	}
@@ -56,10 +61,11 @@ static void	rev_print_list(t_file_list *list, t_ls_flags *flags)
 		ft_putchar('\n');
 }
 
-void		print_list(t_file_list *head, t_ls_flags *flags)
+void		print(void **arr, t_ls_flags *flags)
 {
+	sort(arr, flags);
 	if (flags->revers_order)
-		rev_print_list(head, flags);
+		print_revers(arr, flags);
 	else
-		frw_print_list(head, flags);
+		print_frwrd(arr, flags);
 }
