@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 21:12:45 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/16 23:31:13 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/18 01:21:41 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	s_ls
 }				t_file_list;
 
 void			ft_ls(char *dir_name, t_ls_flags *flags);
+void			ft_ls_for_atributes(char **atributes, t_ls_flags *flags);
 t_ls_flags		get_flags(char *s);
 void			**get_dir(t_ls_flags *flags, DIR *dir_fd, char *path);
 char			*get_mode(unsigned int mode);
@@ -62,6 +63,6 @@ void			print(void **arr, t_ls_flags *flags);
 void			sort(void **arr, t_ls_flags *flags);
 char			*add_color(char *name, const char *mode);
 void			attach_hendler(void **arr, t_ls_flags *flags, char *dir_name);
-void			dir_del(void **arr);
+void			del_dir(void **arr);
 
 #endif

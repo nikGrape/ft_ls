@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   attachments.c                                      :+:      :+:    :+:   */
+/*   attachment.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 23:27:49 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/16 23:30:53 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/17 23:52:07 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	attach_hendler(void **arr, t_ls_flags *flags, char *dir_name)
 		(!ft_strcmp(list->name, ".") || !ft_strcmp(list->name, ".."))))
 		{
 			path = ft_strjoin_free(ft_strjoin(dir_name, "/"), list->name, 1);
-			ft_printf("%s:\n", path);
+			ft_printf("\n%s:\n", path);
 			ft_ls(path, flags);
 			ft_strdel(&path);
 		}

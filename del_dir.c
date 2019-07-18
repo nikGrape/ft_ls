@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   del_dir.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 23:03:43 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/16 23:18:14 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/18 01:21:31 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	list_del(t_file_list *list)
 	free(list);
 }
 
-void		dir_del(void **arr)
+void		del_dir(void **arr)
 {
 	t_file_list *list;
 	void		**tmp;
@@ -30,6 +30,7 @@ void		dir_del(void **arr)
 		while (*tmp)
 		{
 			list = (t_file_list *)*tmp;
+			list_del(list);
 			tmp++;
 		}
 		free(arr);

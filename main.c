@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_color.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/16 14:29:05 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/18 00:29:19 by Nik              ###   ########.fr       */
+/*   Created: 2019/07/18 00:25:34 by Nik               #+#    #+#             */
+/*   Updated: 2019/07/18 00:35:16 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-char	*add_color(char *name, const char *mode)
+int		main(int argc, char **argv)
 {
-	char *file_name;
+	t_ls_flags	flags;
+	char		*path;
 
-	if (mode[0] == 'd')
-		file_name = ft_strjoin_free(ft_strjoin("{bold_cyan}", name),\
-		"{eoc}", 1);
-	else if (mode[3] == 'x')
-		file_name = ft_strjoin_free(ft_strjoin("{red}", name),\
-		"{eoc}", 1);
+	argv++;
+	flags = (argc > 1) ? get_flags(*argv) : get_flags("");
+	argv += (flags.no_flags) ? 0 : 1;
+	if (*argv)
+		ft_ls_for_atributes(argv, &flags);
 	else
-		file_name = ft_strdup(name);
-	return (file_name);
+		ft_ls(".", &flags);
+	//while (1);
 }

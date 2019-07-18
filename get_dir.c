@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_dir.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 11:10:05 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/16 23:53:36 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/17 23:59:20 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void			**add_list(void **arr, t_file_list *list)
 	return (new);
 }
 
-int					fill_list(t_file_list *list, char *path, char *d_name)
+static int			fill_list(t_file_list *list, char *path, char *d_name)
 {
 	Stat		info;
 	char		*file_name;
@@ -120,6 +120,7 @@ void				**get_dir(t_ls_flags *flags, DIR *dir_fd, char *path)
 		allocated_blocks += fill_list(list, path, file->d_name);
 		arr = add_list(arr, list);
 	}
-	ft_printf("total %d\n", allocated_blocks);
+	if (flags->l_flag)
+		ft_printf("total %d\n", allocated_blocks);
 	return (arr);
 }

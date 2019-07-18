@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 13:00:35 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/16 23:34:01 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/18 01:21:52 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,20 @@ void	ft_ls(char *dir_name, t_ls_flags *flags)
 
 	dir_fd = opendir(dir_name);
 	arr = get_dir(flags, dir_fd, dir_name);
+	sort(arr, flags);
 	print(arr, flags);
 	closedir(dir_fd);
 	if (flags->attach)
 		attach_hendler(arr, flags, dir_name);
-	//dir_del(arr);
+	del_dir(arr);
 }
 
-int		main(int argc, char **argv)
+void	ft_ls_for_atributes(char **atributes, t_ls_flags *flags)
 {
-	t_ls_flags	flags;
-	char		*path;
-
-	argv++;
-	flags = (argc > 1) ? get_flags(*argv) : get_flags("");
-	//argv += (flags.no_flags) ? 0 : 1;
-	// if ((argc == 1) || (argc == 2 && !flags.no_flags))
-	// 	ft_ls(".", &flags);
-	// else
-	// {
-	// 	argc--;
-	// 	while (argc)
-	// 		ft_ls(argv[--argc], &flags);
-	// }
-	//path = (argc > 3) ? *argv : ".";
-	ft_ls(".", &flags);
+	while (*atributes)
+	{
+		ft_printf("%s\n", *atributes);
+		ft_ls(*atributes++, flags);
+		ft_printf("\n");
+	}
 }
