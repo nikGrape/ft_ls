@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 11:11:14 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/16 14:59:29 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/18 23:05:46 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ t_ls_flags	get_flags(char *s)
 	t_ls_flags flags;
 
 	ft_bzero(&flags, sizeof(t_ls_flags));
-	if (*s == '-')
+	if (*s++ == '-')
 	{
-		s++;
 		while (is_flag(*s))
 		{
 			if (*s == 'l')

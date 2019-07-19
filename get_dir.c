@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_dir.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 11:10:05 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/17 23:59:20 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/18 22:56:44 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,24 @@ static int			fill_list(t_file_list *list, char *path, char *d_name)
 {
 	Stat		info;
 	char		*file_name;
+	char		*link_path;
 
 	file_name = ft_strjoin_free(ft_strjoin(path, "/"), d_name, 1);
 	list->name = ft_strdup(d_name);
-	stat(file_name, &info);
+	lstat(file_name, &info);
 	list->time = info.st_mtimespec.tv_sec;
 	list->mode = get_mode(info.st_mode);
 	list->usr = getpwuid(info.st_uid)->pw_name;
 	list->group = getgrgid(info.st_gid)->gr_name;
 	list->links = info.st_nlink;
 	list->size = info.st_size;
+	if (list->mode[0] == 'l')
+	{
+		link_path = ft_strnew(50);
+		readlink(list->name, link_path, 50);
+		list->name = ft_strjoin_free(list->name, " -> ", 1);
+		list->name = ft_strjoin_free(list->name, link_path, 2);
+	}
 	ft_strdel(&file_name);
 	return (info.st_blocks);
 }

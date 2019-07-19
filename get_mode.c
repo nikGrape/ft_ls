@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_mode.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 21:10:47 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/12 18:22:54 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/18 21:35:43 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #define IS_FILE	32768
 #define IS_DIR	16384
+#define IS_LINK 8192
 #define U_R		256
 #define U_W		128
 #define U_X		64
@@ -29,6 +30,7 @@ char	*get_mode(unsigned int mode)
 
 	str_mode = ft_strnew(10);
 	str_mode[0] = (mode & IS_DIR) ? 'd' : '-';
+	str_mode[0] = (mode & IS_LINK) ? 'l' : str_mode[0];
 	str_mode[1] = (mode & U_R) ? 'r' : '-';
 	str_mode[2] = (mode & U_W) ? 'w' : '-';
 	str_mode[3] = (mode & U_X) ? 'x' : '-';

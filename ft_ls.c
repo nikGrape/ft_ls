@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 13:00:35 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/18 01:21:52 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/18 22:53:40 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 ** dirent - ????
 ** opendir+		readdir+	closedir+	stat+
-** readlink		lstat - (for links)
+** readlink+		lstat+ - (for links)
 ** getpwuid+ getgrgid+ - (user and grup information in struct passwd)
 ** listxattr getxattr
 ** time		ctime+

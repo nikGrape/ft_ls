@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 00:25:34 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/18 00:35:16 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/18 23:19:52 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,13 @@ int		main(int argc, char **argv)
 		ft_ls(".", &flags);
 	//while (1);
 }
+
+// #include <sys/xattr.h>
+
+// int main()
+// {
+// 	ssize_t i;
+// 	char *list = ft_strnew(50);
+// 	i = getxattr("/nfs/2019/v/vinograd/Desktop/ft_ls", list, 50, 0, O_RDWR);
+// 	ft_printf("%s\n%ld\n", list, i);
+// }
