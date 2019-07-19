@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 13:00:35 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/18 22:53:40 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/19 15:59:10 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@
 
 #include "ft_ls.h"
 
-void	ft_ls(char *dir_name, t_ls_flags *flags)
+int				ft_ls(char *dir_name, t_ls_flags *flags)
 {
 	t_file_list *list;
 	DIR			*dir_fd;
 	char		*path;
 	void		**arr;
 
-	dir_fd = opendir(dir_name);
+	if (!(dir_fd = opendir(dir_name)))
+		return (0);
 	arr = get_dir(flags, dir_fd, dir_name);
 	sort(arr, flags);
 	print(arr, flags);
@@ -40,14 +41,45 @@ void	ft_ls(char *dir_name, t_ls_flags *flags)
 	if (flags->attach)
 		attach_hendler(arr, flags, dir_name);
 	del_dir(arr);
+	return (1);
 }
 
-void	ft_ls_for_atributes(char **atributes, t_ls_flags *flags)
+void			ft_ls_for_atributes(char **atributes, t_ls_flags *flags)
 {
-	while (*atributes)
+	char	**name;
+	void	**arr;
+	t_file_list	*list;
+	char		new_line;
+
+	arr = (void **)malloc(sizeof(void *));
+	*arr = NULL;
+	name = atributes;
+	while (*name)
 	{
-		ft_printf("%s\n", *atributes);
-		ft_ls(*atributes++, flags);
-		ft_printf("\n");
+		if (opendir(*name))
+		{
+			name++;
+			continue ;
+		}
+		list = get_file(flags, *name++);
+		arr = add_list(arr, list);
+	}
+	if (*arr)
+	{
+		sort(arr, flags);
+		print(arr, flags);
+	}
+	new_line = (*arr) ? '\n' : '\r';
+	name = atributes;
+	while (*name)
+	{
+		if (!opendir(*name))
+		{
+			name++;
+			continue ;
+		}
+		ft_printf("%c%s:\n", new_line, *name);
+		ft_ls(*name++, flags);
+		new_line = '\n';
 	}
 }

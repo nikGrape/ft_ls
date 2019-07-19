@@ -6,12 +6,11 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 11:10:05 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/18 22:56:44 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/19 15:15:43 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**		struct group *getgrgid(gid_t gid);
 **		struct group
 **		{
 **		        char    *gr_name;       group name
@@ -54,7 +53,7 @@
 
 #include "ft_ls.h"
 
-static t_file_list	*new_file_list(void)
+t_file_list		*new_file_list(void)
 {
 	t_file_list *new;
 
@@ -63,7 +62,7 @@ static t_file_list	*new_file_list(void)
 	return (new);
 }
 
-static void			**add_list(void **arr, t_file_list *list)
+void			**add_list(void **arr, t_file_list *list)
 {
 	void	**new;
 	int		i;
@@ -84,7 +83,7 @@ static void			**add_list(void **arr, t_file_list *list)
 	return (new);
 }
 
-static int			fill_list(t_file_list *list, char *path, char *d_name)
+static int		fill_list(t_file_list *list, char *path, char *d_name)
 {
 	Stat		info;
 	char		*file_name;
