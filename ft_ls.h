@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 21:12:45 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/19 15:15:55 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/19 22:27:46 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct
 	char		revers_order;
 	char		time_order;
 	char		colors;
+	char		links;
 	char		no_flags;
 }				t_ls_flags;
 typedef struct	s_ls
@@ -54,15 +55,15 @@ typedef struct	s_ls
 }				t_file_list;
 
 int				ft_ls(char *dir_name, t_ls_flags *flags);
-void			ft_ls_for_atributes(char **atributes, t_ls_flags *flags);
+void			atributes_hendler(char **atributes, t_ls_flags *flags);
 void			**add_list(void **arr, t_file_list *list);
 t_ls_flags		get_flags(char *s);
 void			**get_dir(t_ls_flags *flags, DIR *dir_fd, char *path);
-t_file_list		*get_file(t_ls_flags *flags, char *file_name);
 char			*get_mode(unsigned int mode);
 void			ls_errors(int err, char *file_name);
 void			print(void **arr, t_ls_flags *flags);
 void			sort(void **arr, t_ls_flags *flags);
+void			dir_sort(char **argv, t_ls_flags *flags);
 char			*add_color(char *name, const char *mode);
 void			attach_hendler(void **arr, t_ls_flags *flags, char *dir_name);
 void			del_dir(void **arr);

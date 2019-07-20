@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 11:10:05 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/19 15:15:43 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/19 22:05:08 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static int		fill_list(t_file_list *list, char *path, char *d_name)
 	return (info.st_blocks);
 }
 
-void				**get_dir(t_ls_flags *flags, DIR *dir_fd, char *path)
+void			**get_dir(t_ls_flags *flags, DIR *dir_fd, char *path)
 {
 	Dirent		*file;
 	t_file_list	*list;

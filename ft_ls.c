@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 13:00:35 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/19 15:59:10 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/19 22:33:27 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,19 @@
 **
 ** following: -l(list), -R(attachments), -a(hiden)
 ** -r(reverse order) and -t(time order).
+**	typedef struct
+**	{
+**		int	__dd_fd;				file descriptor associated with directory
+**		long	__dd_loc;					offset in current buffer
+**		long	__dd_size;					amount of data returned
+**		char	*__dd_buf;					data buffer
+**		int	__dd_len;						size of data buffer
+**		long	__dd_seek;					magic cookie returned
+**		__unused long	__padding;		(__dd_rewind space left for bincompat)
+**		int	__dd_flags;						flags for readdir
+**		__darwin_pthread_mutex_t __dd_lock;	for thread locking
+**		struct _telldir *__dd_td;			telldir position recording
+**	}	DIR;
 */
 
 #include "ft_ls.h"
@@ -42,44 +55,4 @@ int				ft_ls(char *dir_name, t_ls_flags *flags)
 		attach_hendler(arr, flags, dir_name);
 	del_dir(arr);
 	return (1);
-}
-
-void			ft_ls_for_atributes(char **atributes, t_ls_flags *flags)
-{
-	char	**name;
-	void	**arr;
-	t_file_list	*list;
-	char		new_line;
-
-	arr = (void **)malloc(sizeof(void *));
-	*arr = NULL;
-	name = atributes;
-	while (*name)
-	{
-		if (opendir(*name))
-		{
-			name++;
-			continue ;
-		}
-		list = get_file(flags, *name++);
-		arr = add_list(arr, list);
-	}
-	if (*arr)
-	{
-		sort(arr, flags);
-		print(arr, flags);
-	}
-	new_line = (*arr) ? '\n' : '\r';
-	name = atributes;
-	while (*name)
-	{
-		if (!opendir(*name))
-		{
-			name++;
-			continue ;
-		}
-		ft_printf("%c%s:\n", new_line, *name);
-		ft_ls(*name++, flags);
-		new_line = '\n';
-	}
 }
