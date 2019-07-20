@@ -6,21 +6,17 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 13:00:35 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/19 22:33:27 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/19 22:45:58 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 ** dirent - ????
-** opendir+		readdir+	closedir+	stat+
-** readlink+		lstat+ - (for links)
-** getpwuid+ getgrgid+ - (user and grup information in struct passwd)
 ** listxattr getxattr
-** time		ctime+
-** perror strerror exit - (errors_functions)
 **
-** following: -l(list), -R(attachments), -a(hiden)
-** -r(reverse order) and -t(time order).
+** -l(list), -R(attachments), -a(hiden)
+** -r(reverse order) and -t(time order)
+**
 **	typedef struct
 **	{
 **		int	__dd_fd;				file descriptor associated with directory
