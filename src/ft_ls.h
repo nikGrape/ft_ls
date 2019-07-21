@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 21:12:45 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/19 22:27:46 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/20 19:33:06 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 #ifndef FT_LS_H
 # define FT_LS_H
 
-# include "stdio.h"
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -28,8 +27,6 @@
 # include <grp.h>
 # include <uuid/uuid.h>
 
-typedef struct dirent	Dirent;
-typedef struct stat		Stat;
 typedef struct
 {
 	char		l_flag;
@@ -37,7 +34,6 @@ typedef struct
 	char		hidden;
 	char		revers_order;
 	char		time_order;
-	char		colors;
 	char		links;
 	char		no_flags;
 }				t_ls_flags;
@@ -54,16 +50,18 @@ typedef struct	s_ls
 	struct s_ls *back;
 }				t_file_list;
 
-int				ft_ls(char *dir_name, t_ls_flags *flags);
-void			atributes_hendler(char **atributes, t_ls_flags *flags);
+int				ft_ls_dir(char *dir_name, t_ls_flags *flags);
+char			ft_ls_files(char **names, t_ls_flags *flags);
+void			arguments_hendler(char **atributes, t_ls_flags *flags);
 void			**add_list(void **arr, t_file_list *list);
 t_ls_flags		get_flags(char *s);
 void			**get_dir(t_ls_flags *flags, DIR *dir_fd, char *path);
+t_file_list		*get_file_info(char *file_name);
 char			*get_mode(unsigned int mode);
 void			ls_errors(int err, char *file_name);
 void			print(void **arr, t_ls_flags *flags);
 void			sort(void **arr, t_ls_flags *flags);
-void			dir_sort(char **argv, t_ls_flags *flags);
+void			dir_sort(char **argv);
 char			*add_color(char *name, const char *mode);
 void			attach_hendler(void **arr, t_ls_flags *flags, char *dir_name);
 void			del_dir(void **arr);

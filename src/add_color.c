@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 14:29:05 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/18 22:29:07 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/20 14:44:27 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ char	*add_color(char *name, const char *mode)
 		ft_strcat(file_name, link);
 	}
 	else if (mode[3] == 'x')
-		file_name = ft_strjoin_free(ft_strjoin("{red}", name),\
-		"{eoc}", 1);
+		file_name = ft_strjoin_free(ft_strjoin("{red}\0", name),\
+		"{eoc}\0", 1);
 	else
 		file_name = ft_strdup(name);
 	return (file_name);

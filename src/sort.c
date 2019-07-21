@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 21:17:04 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/19 22:00:42 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/20 19:33:42 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	sort(void **arr, t_ls_flags *flags)
 		alphabet_sort(arr);
 }
 
-void	dir_sort(char **argv, t_ls_flags *flags)
+void	dir_sort(char **argv)
 {
 	char		*tmp;
 	int			i;

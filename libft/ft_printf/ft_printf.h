@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 13:07:55 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/15 11:31:09 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/20 19:03:03 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ char			*str_redactor(char *arg, register t_flag flags);
 int				color_redactor(const char *str);
 int				putstr_for_null_char(char *s);
 int				putstr_color(char *s);
+int				ft_strlen_color(char *s);
 
 #endif

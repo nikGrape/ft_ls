@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 11:10:05 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/19 22:05:08 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/20 16:31:41 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ void			**add_list(void **arr, t_file_list *list)
 
 static int		fill_list(t_file_list *list, char *path, char *d_name)
 {
-	Stat		info;
-	char		*file_name;
-	char		*link_path;
+	struct stat		info;
+	char			*file_name;
+	char			*link_path;
 
 	file_name = ft_strjoin_free(ft_strjoin(path, "/"), d_name, 1);
 	list->name = ft_strdup(d_name);
@@ -103,7 +103,7 @@ static int		fill_list(t_file_list *list, char *path, char *d_name)
 		link_path = ft_strnew(50);
 		readlink(list->name, link_path, 50);
 		list->name = ft_strjoin_free(list->name, " -> ", 1);
-		list->name = ft_strjoin_free(list->name, link_path, 2);
+		list->name = ft_strjoin_free(list->name, link_path, 3);
 	}
 	ft_strdel(&file_name);
 	return (info.st_blocks);
@@ -111,10 +111,10 @@ static int		fill_list(t_file_list *list, char *path, char *d_name)
 
 void			**get_dir(t_ls_flags *flags, DIR *dir_fd, char *path)
 {
-	Dirent		*file;
-	t_file_list	*list;
-	int			allocated_blocks;
-	void		**arr;
+	struct dirent	*file;
+	t_file_list		*list;
+	int				allocated_blocks;
+	void			**arr;
 
 	arr = (void **)malloc(sizeof(void *));
 	*arr = NULL;

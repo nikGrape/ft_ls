@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:19:09 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/15 11:30:18 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/20 14:51:32 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,7 @@ int			color_redactor(const char *str)
 		return (0);
 	color = ft_strsub(str, 0, brace - str);
 	i = color_compare(color);
-	return (i) ? ft_strlen(color) + 2 : 0;
+	i = (i) ? ft_strlen(color) + 2 : 0;
+	ft_strdel(&color);
+	return (i);
 }

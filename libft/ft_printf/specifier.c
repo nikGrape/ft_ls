@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 00:55:21 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/15 11:31:40 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/20 18:16:50 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,7 @@ static char	*hendler_s_c(t_flag *flags, va_list *ap)
 	else if (flags->spcf == 'c')
 	{
 		ch = (char)va_arg(*ap, int);
-		if (ch)
-			s = str_redactor(ft_stradd(NULL, ch), *flags);
-		else
-		{
-			s = str_redactor(ft_strdup("@"), *flags);
-			flags->spcf = 'N';
-		}
+		s = str_redactor(ft_stradd(NULL, ch), *flags);
 	}
 	return (s);
 }
