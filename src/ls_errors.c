@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls_errors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 11:22:34 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/20 14:00:22 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/21 11:14:42 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ls_errors(int err, char *message)
 	else if (err == 2)
 		ft_printf("ERROR\n");
 	else if (err == 3)
-		ft_printf("ls: illegal option - %c\nusge: ft_ls [-GRlart] [file ...]\n"\
+		ft_printf("ls: illegal option - %c\nusge: ft_ls [-Rlart] [file ...]\n"\
 		, *message);
 	exit(1);
 }

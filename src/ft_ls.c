@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 13:00:35 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/20 19:49:19 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/21 12:06:12 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ int			main(int argc, char **argv)
 	t_ls_flags	flags;
 
 	argv++;
-	flags = (argc > 1) ? get_flags(*argv) : get_flags("");
-	argv += (flags.no_flags) ? 0 : 1;
+	if (argc > 1)
+		flags = get_flags(argv);
+	argv += flags.step;
 	if (*argv)
 		arguments_hendler(argv, &flags);
 	else
@@ -51,7 +52,9 @@ void		arguments_hendler(char **argv, t_ls_flags *flags)
 {
 	char		new_line;
 	DIR			*tmp;
+	int			i;
 
+	i = 0;
 	dir_sort(argv);
 	new_line = ft_ls_files(argv, flags);
 	while (*argv)
@@ -62,7 +65,8 @@ void		arguments_hendler(char **argv, t_ls_flags *flags)
 			continue ;
 		}
 		closedir(tmp);
-		ft_printf("%c%s:\n", new_line, *argv);
+		if (i++ > 0)
+			ft_printf("%c%s:\n", new_line, *argv);
 		ft_ls_dir(*argv++, flags);
 		new_line = '\n';
 	}

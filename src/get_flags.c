@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_flags.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 11:11:14 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/20 16:36:06 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/21 12:04:18 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	flag_analizer(t_ls_flags *flags, char *s)
 			flags->revers_order = 1;
 		if (*s == 't')
 			flags->time_order = 1;
-		if (*s == 'L')
+		if (*s == '1')
 			flags->links = 1;
 		s++;
 	}
@@ -42,14 +42,17 @@ static void	flag_analizer(t_ls_flags *flags, char *s)
 		ls_errors(3, s);
 }
 
-t_ls_flags	get_flags(char *s)
+t_ls_flags	get_flags(char **s)
 {
 	t_ls_flags flags;
 
 	ft_bzero(&flags, sizeof(t_ls_flags));
-	if (*s++ == '-')
-		flag_analizer(&flags, s);
-	else
-		flags.no_flags = 1;
+	while (**s == '-')
+	{
+		flag_analizer(&flags, ++(*s));
+		flags.step++;
+		if(!*(++s))
+			break ;
+	}
 	return (flags);
 }

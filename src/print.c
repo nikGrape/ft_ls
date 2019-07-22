@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 21:07:50 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/20 19:54:41 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/21 11:39:00 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	print_frwrd(void **arr, t_ls_flags *flags)
 			list->mode, list->links, list->usr, list->group,\
 			list->size, ctime(&list->time) + 4, name);
 		else
-			ft_printf("%-20s%c", name, (++i % 6) ? ' ' : '\n');
+			ft_printf("%c%s", (i++ == 0) ? 0 : '\n', name);
 		arr++;
 		ft_strdel(&name);
 	}
@@ -60,7 +60,7 @@ static void	print_revers(void **arr, t_ls_flags *flags)
 			list->mode, list->links, list->usr, list->group,\
 			list->size, ctime(&list->time) + 4, name);
 		else
-			ft_printf("%-20s%c", name, (++i % 6) ? ' ' : '\n');
+			ft_printf("%c%s", (i++ == 0) ? 0 : '\n', name);
 		ft_strdel(&name);
 	}
 	if (!flags->l_flag)

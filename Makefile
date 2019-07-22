@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+         #
+#    By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/20 19:18:00 by vinograd          #+#    #+#              #
-#    Updated: 2019/07/20 19:37:36 by vinograd         ###   ########.fr        #
+#    Updated: 2019/07/21 11:10:27 by Nik              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,6 @@ clean:
 
 fclean: clean
 	@make -C libft/ fclean
-	/bin/rm -f $(NAME)
+	/bin/rm $(NAME)
 
 re: fclean all

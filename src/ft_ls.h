@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 21:12:45 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/20 19:33:06 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/21 12:04:13 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct
 	char		revers_order;
 	char		time_order;
 	char		links;
-	char		no_flags;
+	char		step;
 }				t_ls_flags;
 typedef struct	s_ls
 {
@@ -54,7 +54,7 @@ int				ft_ls_dir(char *dir_name, t_ls_flags *flags);
 char			ft_ls_files(char **names, t_ls_flags *flags);
 void			arguments_hendler(char **atributes, t_ls_flags *flags);
 void			**add_list(void **arr, t_file_list *list);
-t_ls_flags		get_flags(char *s);
+t_ls_flags		get_flags(char **s);
 void			**get_dir(t_ls_flags *flags, DIR *dir_fd, char *path);
 t_file_list		*get_file_info(char *file_name);
 char			*get_mode(unsigned int mode);
