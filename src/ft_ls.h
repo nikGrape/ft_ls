@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 21:12:45 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/21 12:04:13 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/22 17:00:26 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,11 @@ typedef struct	s_ls
 	struct s_ls *back;
 }				t_file_list;
 
-int				ft_ls_dir(char *dir_name, t_ls_flags *flags);
+void			dir_hendler(char *dir_name, t_ls_flags *flags);
 char			ft_ls_files(char **names, t_ls_flags *flags);
-void			arguments_hendler(char **atributes, t_ls_flags *flags);
+void			ft_ls_dir(char **argv, t_ls_flags *flags, char new_line);
 void			**add_list(void **arr, t_file_list *list);
 t_ls_flags		get_flags(char **s);
-void			**get_dir(t_ls_flags *flags, DIR *dir_fd, char *path);
 t_file_list		*get_file_info(char *file_name);
 char			*get_mode(unsigned int mode);
 void			ls_errors(int err, char *file_name);

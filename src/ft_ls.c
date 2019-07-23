@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 13:00:35 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/21 12:06:12 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/22 18:15:17 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,54 @@
 int			main(int argc, char **argv)
 {
 	t_ls_flags	flags;
+	char		new_line;
 
 	argv++;
 	if (argc > 1)
 		flags = get_flags(argv);
 	argv += flags.step;
 	if (*argv)
-		arguments_hendler(argv, &flags);
+	{
+		new_line = ft_ls_files(argv, &flags);
+		ft_ls_dir(argv, &flags, new_line);
+	}
 	else
-		ft_ls_dir(".", &flags);
+		dir_hendler(".", &flags);
 }
 
-void		arguments_hendler(char **argv, t_ls_flags *flags)
+int			arr_len(void **arr)
 {
-	char		new_line;
-	DIR			*tmp;
-	int			i;
+	int i;
 
 	i = 0;
-	dir_sort(argv);
-	new_line = ft_ls_files(argv, flags);
+	while (*arr++)
+		i++;
+	return (i);
+}
+
+void		print_dir(void **arr, t_ls_flags *flags, char new_line)
+{
+	int len;
+
+	sort(arr, flags);
+	len = arr_len(arr);
+	while (*arr)
+	{
+		if (len > 1)
+			ft_printf("%c%s:\n", new_line, ((t_file_list *)*arr)->name);
+		dir_hendler(((t_file_list *)*arr++)->name, flags);
+		new_line = '\n';
+	}
+}
+
+void		ft_ls_dir(char **argv, t_ls_flags *flags, char new_line)
+{
+	void		**arr;
+	t_file_list	*list;
+	DIR			*tmp;
+
+	arr = (void **)malloc(sizeof(void *));
+	*arr = NULL;
 	while (*argv)
 	{
 		if (!(tmp = opendir(*argv)))
@@ -65,27 +93,12 @@ void		arguments_hendler(char **argv, t_ls_flags *flags)
 			continue ;
 		}
 		closedir(tmp);
-		if (i++ > 0)
-			ft_printf("%c%s:\n", new_line, *argv);
-		ft_ls_dir(*argv++, flags);
-		new_line = '\n';
+		if ((list = get_file_info(*argv++)))
+			arr = add_list(arr, list);
 	}
-}
-
-int			ft_ls_dir(char *dir_name, t_ls_flags *flags)
-{
-	DIR			*dir_fd;
-	void		**arr;
-
-	if (!(dir_fd = opendir(dir_name)))
-		return (0);
-	arr = get_dir(flags, dir_fd, dir_name);
-	print(arr, flags);
-	closedir(dir_fd);
-	if (flags->attach)
-		attach_hendler(arr, flags, dir_name);
+	if (*arr)
+		print_dir(arr, flags, new_line);
 	del_dir(arr);
-	return (1);
 }
 
 char		ft_ls_files(char **names, t_ls_flags *flags)

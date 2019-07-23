@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_flags.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 11:11:14 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/21 12:04:18 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/22 16:51:32 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_ls_flags	get_flags(char **s)
 	{
 		flag_analizer(&flags, ++(*s));
 		flags.step++;
-		if(!*(++s))
+		if (!*(++s))
 			break ;
 	}
 	return (flags);

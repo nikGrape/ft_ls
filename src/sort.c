@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 21:17:04 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/20 19:33:42 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/22 17:56:42 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,28 +76,4 @@ void	sort(void **arr, t_ls_flags *flags)
 		time_sort(arr);
 	else
 		alphabet_sort(arr);
-}
-
-void	dir_sort(char **argv)
-{
-	char		*tmp;
-	int			i;
-	int			j;
-
-	j = 0;
-	while (argv[j])
-	{
-		i = j + 1;
-		while (argv[i])
-		{
-			if (ft_strcmp(argv[j], argv[i]) > 0)
-			{
-				tmp = argv[i];
-				argv[i] = argv[j];
-				argv[j] = tmp;
-			}
-			i++;
-		}
-		j++;
-	}
 }
