@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 11:11:14 by Nik               #+#    #+#             */
-/*   Updated: 2019/07/22 16:51:32 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/24 17:34:36 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	is_flag(char ch)
 {
 	if (ch == 'l' || ch == 'R' || ch == 'a'\
-	|| ch == 'r' || ch == 't' || ch == 'G')
+	|| ch == 'r' || ch == 't')
 		return (1);
 	return (0);
 }
@@ -34,8 +34,6 @@ static void	flag_analizer(t_ls_flags *flags, char *s)
 			flags->revers_order = 1;
 		if (*s == 't')
 			flags->time_order = 1;
-		if (*s == '1')
-			flags->links = 1;
 		s++;
 	}
 	if (*s != '\0')

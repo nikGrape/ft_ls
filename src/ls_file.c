@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_file_info.c                                    :+:      :+:    :+:   */
+/*   ls_file.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 14:32:19 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/20 19:33:38 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/24 21:15:10 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,33 @@ t_file_list		*get_file_info(char *file_name)
 		list->name = ft_strjoin_free(list->name, link_path, 3);
 	}
 	return (list);
+}
+
+char			ft_ls_files(char **names, t_ls_flags *flags)
+{
+	void		**arr;
+	t_file_list	*list;
+	char		ch;
+
+	ch = '\0';
+	arr = (void **)malloc(sizeof(void *));
+	*arr = NULL;
+	while (*names)
+	{
+		if (ft_isdir(*names))
+		{
+			names++;
+			continue ;
+		}
+		if ((list = get_file_info(*names++)))
+			arr = add_list(arr, list);
+		ch = '\r';
+	}
+	if (*arr)
+	{
+		print(arr, flags);
+		ch = '\n';
+	}
+	del_dir(arr);
+	return (ch);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+         #
+#    By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/20 19:18:00 by vinograd          #+#    #+#              #
-#    Updated: 2019/07/21 11:10:27 by Nik              ###   ########.fr        #
+#    Updated: 2019/07/24 13:59:17 by vinograd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,3 +30,6 @@ fclean: clean
 	/bin/rm $(NAME)
 
 re: fclean all
+
+run:
+	gcc -Wall -Wextra -Werror $(SRCS) $(INCLUDES) -o $(NAME)
