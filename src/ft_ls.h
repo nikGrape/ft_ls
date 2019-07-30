@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 21:12:45 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/24 21:11:20 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/28 12:37:54 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ t_file_list		*get_file_info(char *file_name);
 void			ls_errors(int err, char *file_name);
 void			print(void **arr, t_ls_flags *flags);
 void			sort(void **arr, t_ls_flags *flags);
-void			dir_sort(char **argv);
 char			*add_color(char *name, const char *mode);
 void			attach_hendler(void **arr, t_ls_flags *flags, char *dir_name);
 void			del_dir(void **arr);
