@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   specifier.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 00:55:21 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/21 11:25:51 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/30 14:03:18 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*hendler_s_c(t_flag *flags, va_list *ap)
 		if (ch)
 			s = str_redactor(ft_stradd(NULL, ch), *flags);
 		else
-			s = str_redactor(ft_strdup(""), *flags);	
+			s = str_redactor(ft_strdup(""), *flags);
 	}
 	return (s);
 }
