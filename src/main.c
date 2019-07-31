@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 13:00:35 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/31 12:00:59 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/31 15:01:20 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 ** simbolic link 	101-0000-111-101-101
 ** tmp_dir	    	010-0001-111-111-111 - last 'x' would be 't'
 ** socet_link 		110-0000-111-101-101 - has both bits dir and file
-** 					
 */
 
 #include "ft_ls.h"

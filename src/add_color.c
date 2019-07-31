@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 14:29:05 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/31 02:23:20 by Nik              ###   ########.fr       */
+/*   Updated: 2019/07/31 15:00:08 by vinograd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static char	*link_color(char *name)
 char		*add_color(char *name, const char *mode)
 {
 	char	*file_name;
-
 
 	if (mode[0] == 'd')
 		file_name = ft_strjoin_free(ft_strjoin("{bold_cyan}", name),\
