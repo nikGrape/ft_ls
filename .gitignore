@@ -3,6 +3,7 @@
 a.out
 libft/libft.a
 libft/a.out
+libft/*.o
 .vscode/
 a.out.dSYM/
 link1

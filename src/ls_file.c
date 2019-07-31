@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls_file.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 14:32:19 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/24 21:15:10 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/31 02:31:03 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_file_list		*get_file_info(char *file_name)
 	list->group = getgrgid(info.st_gid)->gr_name;
 	list->links = info.st_nlink;
 	list->size = info.st_size;
-	if (list->mode[0] == 'l')
+	if (list->mode[0] == 'l' && !ft_isdir(file_name))
 	{
 		link_path = ft_strnew(50);
 		readlink(list->name, link_path, 50);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_mode.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 21:10:47 by vinograd          #+#    #+#             */
-/*   Updated: 2019/07/18 21:35:43 by vinograd         ###   ########.fr       */
+/*   Updated: 2019/07/31 02:26:16 by Nik              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define IS_FILE	32768
 #define IS_DIR	16384
 #define IS_LINK 8192
+#define IS_TMP	512
 #define U_R		256
 #define U_W		128
 #define U_X		64
@@ -29,8 +30,8 @@ char	*get_mode(unsigned int mode)
 	char *str_mode;
 
 	str_mode = ft_strnew(10);
-	str_mode[0] = (mode & IS_DIR) ? 'd' : '-';
-	str_mode[0] = (mode & IS_LINK) ? 'l' : str_mode[0];
+	str_mode[0] = (mode & IS_LINK) ? 'l' : (mode & IS_DIR) ? 'd' : '-';
+	str_mode[0] = (mode & IS_FILE && mode & IS_DIR) ? 's' : str_mode[0];
 	str_mode[1] = (mode & U_R) ? 'r' : '-';
 	str_mode[2] = (mode & U_W) ? 'w' : '-';
 	str_mode[3] = (mode & U_X) ? 'x' : '-';
@@ -39,6 +40,6 @@ char	*get_mode(unsigned int mode)
 	str_mode[6] = (mode & G_X) ? 'x' : '-';
 	str_mode[7] = (mode & O_R) ? 'r' : '-';
 	str_mode[8] = (mode & O_W) ? 'w' : '-';
-	str_mode[9] = (mode & O_X) ? 'x' : '-';
+	str_mode[9] = (mode & IS_TMP) ? 't' : (mode & O_X) ? 'x' : '-';
 	return (str_mode);
 }
